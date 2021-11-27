@@ -16,7 +16,9 @@ make rk3566-quartz64_defconfig
 make CROSS_COMPILE=aarch64-linux-gnu- -j4 && make CROSS_COMPILE=aarch64-linux-gnu- -j4 u-boot.itb
 tools/mkimage -n rk356x -T rksd -d rk3566_ddr_1056MHz_v1.08.bin:spl/u-boot-spl.bin idblock.bin
 
-# write sdcard
+# write sdcard (make sure to change mmcblk0 for your actual device)
+echo -e "\ng\nn\n1\n16384\n+16M\nt\n11\nn\n2\n\n+256M\nt\n2\n1\nn\n\n\n\nw" | fdisk /dev/mmcblk0
+echo -e "\nx\nn\n1\nuboot\nr\nw" | fdisk /dev/mmcblk0
 dd if=idblock.bin of=/dev/mmcblk0 seek=64
 dd if=u-boot.itb of=/dev/mmcblk0p1
 
