@@ -6,6 +6,8 @@ The patching process is as described here:-
 
 https://forum.pine64.org/showthread.php?tid=14507
 
+but don't worry about that because the code here is already patched.
+
 In order to compile this u-boot do this:-
 
 git clone --depth=1 -b quartz64-a https://github.com/dieselnutjob/u-boot.git u-boot
