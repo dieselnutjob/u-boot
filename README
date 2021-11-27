@@ -11,11 +11,10 @@ but don't worry about that because the code here is already patched.
 In order to compile this u-boot do this:-
 
 git clone --depth=1 -b quartz64-a https://github.com/dieselnutjob/u-boot.git u-boot
-git clone --depth=1 https://github.com/dieselnutjob/rkbin.git rkbin
 cd u-boot
 make rk3566-quartz64_defconfig
 make CROSS_COMPILE=aarch64-linux-gnu- -j4 && make CROSS_COMPILE=aarch64-linux-gnu- -j4 u-boot.itb
-tools/mkimage -n rk356x -T rksd -d ../rkbin/bin/rk35/rk3566_ddr_1056MHz_v1.08.bin:spl/u-boot-spl.bin idblock.bin
+tools/mkimage -n rk356x -T rksd -d rk3566_ddr_1056MHz_v1.08.bin:spl/u-boot-spl.bin idblock.bin
 
 # write sdcard
 dd if=idblock.bin of=/dev/mmcblk0 seek=64
