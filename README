@@ -21,6 +21,9 @@ tools/mkimage -n rk356x -T rksd -d ../rkbin/bin/rk35/rk3566_ddr_1056MHz_v1.08.bi
 dd if=idblock.bin of=/dev/mmcblk0 seek=64
 dd if=u-boot.itb of=/dev/mmcblk0p1
 
+Tested on Ubuntu 21.04. Download here
+https://releases.ubuntu.com/21.04/ubuntu-21.04-live-server-amd64.iso
+
 The rest of this readme is as it was from rockchip.
 
 #
