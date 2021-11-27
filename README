@@ -1,3 +1,26 @@
+This is a fork of https://github.com/rockchip-linux/u-boot.git which 
+has been patched to work with the Pine64 Quartz64 model A and then 
+uploaded here.
+
+The patching process is as described here:-
+
+https://forum.pine64.org/showthread.php?tid=14507
+
+In order to compile this u-boot do this:-
+
+git clone --depth=1 -b quartz64-a https://github.com/dieselnutjob/u-boot.git u-boot
+git clone --depth=1 https://github.com/dieselnutjob/rkbin.git rkbin
+cd u-boot
+make rk3566-quartz64_defconfig
+make CROSS_COMPILE=aarch64-linux-gnu- -j4 && make CROSS_COMPILE=aarch64-linux-gnu- -j4 u-boot.itb
+tools/mkimage -n rk356x -T rksd -d ../rkbin/bin/rk35/rk3566_ddr_1056MHz_v1.08.bin:spl/u-boot-spl.bin idblock.bin
+
+# write sdcard
+dd if=idblock.bin of=/dev/mmcblk0 seek=64
+dd if=u-boot.itb of=/dev/mmcblk0p1
+
+The rest of this readme is as it was from rockchip.
+
 #
 # (C) Copyright 2000 - 2013
 # Wolfgang Denk, DENX Software Engineering, wd@denx.de.
